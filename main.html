@@ -1,202 +1,554 @@
+
 <!DOCTYPE html>
-<html> 
-	<meta charset="utf-8">
-    <link rel="stylesheet" type="text/css"
-          href="https://TheGaba.cs.github.io/CS 간편복사.css">
-    <script src="https://TheGaba.cs.github.io/CS 간편복사.js"></script>
-</head>
-  body {
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  /* background-color: #f5f5f5; */
-}
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>두근두근 CS진상 길들이기</title>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+      body {
+        text-align: center;
+        padding: 10px;
+      }
+      .done {
+        position: fixed;
+        display: inline-block;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 25px 50px;
+        background-color: #333333;
+        color: #ffffff;
+        border-radius: 100px;
+        font-weight: 600;
+        opacity: 0;
+      }
+      #search {
+        height: 30px;
+        text-indent: 5px;
+      }
 
-header {
-  position: sticky;
-  top: 0;
-  padding: 10px 25px 15px 25px;
-  background-color: #ffffff;
-  /* border-bottom: 1px solid #000000; */
-  z-index: 1;
-  box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.05);
-}
-.done {
-  position: fixed;
-  display: inline-block;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 25px 50px;
-  background-color: #333333;
-  color: #ffffff;
-  border-radius: 100px;
-  font-weight: 600;
-  opacity: 0;
-}
-.flex_box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-h1 {
-  box-sizing: border-box;
-  display: inline-block;
-  text-align: left;
-  /* border: 1px solid darkblue; */
-}
-.go_btn {
-  box-sizing: border-box;
-  display: inline-block;
-  text-align: right;
-  align-items: end;
-  /* border: 1px solid violet; */
-}
-.papago {
-  box-sizing: border-box;
-  text-decoration: none;
-  font-weight: 700;
-  color: white;
-  background-color: #00a1ff;
-  padding: 15px 20px;
-  margin: 5px;
-  border-radius: 10px;
-  /* border: 1px solid #333333; */
-}
-.g_sheet {
-  box-sizing: border-box;
-  text-decoration: none;
-  font-weight: 700;
-  color: white;
-  background-color: #0f9d58;
-  padding: 15px 20px;
-  margin: 5px;
-  border-radius: 10px;
-  /* border: 1px solid #333333; */
-}
-.boxhero {
-  box-sizing: border-box;
-  text-decoration: none;
-  font-weight: 700;
-  color: white;
-  background-color: #4f67ff;
-  padding: 15px 20px;
-  margin: 5px;
-  border-radius: 10px;
-  /* border: 1px solid #333333; */
-}
+      .box {
+        display: inline-block;
+        width: 40%;
+        border: 1px solid black;
+        margin: 10px;
+        padding: 30px;
+        text-align: center;
+        box-sizing: content-box;
+      }
+      .short {
+        width: 28% !important;
+      }
+      .papago {
+        text-decoration: none;
+        font-weight: 700;
+        color: white;
+        background-color: cornflowerblue;
+        padding: 15px 20px;
+        border-radius: 20px;
+      }
 
-.filter_box {
-  box-sizing: border-box;
-}
-.show {
-  transition: 0.3s ease;
-  opacity: 1;
-}
-.hide {
-  transition: 0.2s ease;
-  opacity: 0;
-}
+      span {
+        padding: 7px 10px;
+        /* border: 1px solid black; */
+        border-radius: 50px;
+        font-size: 12px;
+        margin: 3px;
+      }
+      .H /* 인사말 */ {
+        background-color: #e2f0d9;
+      }
+      .E /* 유통기한 */ {
+        background-color: #e1ebf7;
+      }
+      .D /* 배송 */ {
+        background-color: #ede3ee;
+      }
+      .A /* 정품 */ {
+        background-color: #fcf9da;
+      }
+      .C /* 불만 */ {
+        background-color: #fcdfd7;
+      }
+      .G /* 고객요청 */ {
+        background-color: #f8e0c6;
+      }
+      .B /* 마무리인사 */ {
+        background-color: #eaeaea;
+      }
 
-#search {
-  width: 250px;
-  height: 45px;
-  text-indent: 5px;
-  border: none;
-  border-bottom: 1px solid black;
-}
-.fa-magnifying-glass {
-  position: relative;
-  right: 35px;
-}
+      p {
+        font-size: 20px;
+        font-weight: 900;
+      }
+      button {
+        width: 100px;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>평범한 직장인이었던 내가 알고보니 CS천재?</h1>
+      <br />
+      <a class="papago" href="https://papago.naver.com/?sk=auto&tk=ko">
+        파파고 바로가기
+      </a>
+      <div class="done">복사 완료</div>
+      <br />
+      <br />
+      <br />
+      <input id="search" type="text" placeholder="Search.." />
+    </header>
+    <div class="box short">
+      <span class="H">인사말</span>
+      <p>안녕하세요! 문의주셔서 감사합니다.</p>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Hello! Thank you for your inquiry.');"
+      >
+        영어
+      </button>
+      <button class="copy" onclick="copyToClipboard('您好！谢谢您的咨询。');">
+        중국어(간체)
+      </button>
+      <button class="copy" onclick="copyToClipboard('您好！謝謝您的諮詢。');">
+        중국어(번체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Xin chào! Cảm ơn vì đã hỏi.');"
+      >
+        베트남어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Halo! Terima kasih atas pertanyaannya.');"
+      >
+        인도네시아어
+      </button>
+    </div>
+    <div class="box short">
+      <span class="H">인사말</span>
+      <p>안녕하세요! 주문해주셔서 감사합니다.</p>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Hello! Thank you for your order.');"
+      >
+        영어
+      </button>
+      <button class="copy" onclick="copyToClipboard('您好！谢谢您的订单。');">
+        중국어(간체)
+      </button>
+      <button class="copy" onclick="copyToClipboard('您好！謝謝您的訂單。');">
+        중국어(번체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Xin chào! Cảm ơn vì đã gọi món.');"
+      >
+        베트남어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Halo! Terima kasih atas pesanannya.');"
+      >
+        인도네시아어
+      </button>
+    </div>
+    <div class="box short">
+      <span class="B">마무리인사</span>
+      <p>감사합니다! 좋은 하루 되세요 :)</p>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Thank you! Have a nice day :)');"
+      >
+        영어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('谢谢！祝你度过愉快的一天:)');"
+      >
+        중국어(간체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('謝謝！祝你度過愉快的一天:)');"
+      >
+        중국어(번체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Cảm ơn các bạn! Chúc một ngày tốt lành :)');"
+      >
+        베트남어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Terima kasih! Semoga harimu menyenangkan :)');"
+      >
+        인도네시아어
+      </button>
+    </div>
+    <div class="box">
+      <span class="H">인사말</span>
+      <span class="E">유통기한</span>
+      <p>
+        안녕하세요! 문의주셔서 감사합니다.
+        <br />
+        유통기한은 [00-00-00] 입니다.
+      </p>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Hello! Thank you for your inquiry. The expiration date is ');"
+      >
+        영어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('您好！谢谢您的咨询。 保质期是');"
+      >
+        중국어(간체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('您好！謝謝您的諮詢。 保質期是');"
+      >
+        중국어(번체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Xin chào! Cảm ơn vì đã hỏi. Hạn sử dụng là ');"
+      >
+        베트남어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Halo! Terima kasih atas pertanyaannya. Tanggal kedaluwarsa adalah ');"
+      >
+        인도네시아어
+      </button>
+    </div>
+    <div class="box">
+      <span class="H">인사말</span>
+      <span class="D">배송</span>
+      <p>
+        안녕하세요! 주문해주셔서 감사합니다.
+        <br />
+        최대한 빨리 보내드릴께요 :)
+      </p>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Hello! Thank you for your order. I’ll send it to you as soon as possible :)');"
+      >
+        영어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('您好！谢谢您的订单。 我会尽快发给您:)');"
+      >
+        중국어(간체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('您好！謝謝您的訂單。 我會盡快發給您:)');"
+      >
+        중국어(번체)
+      </button>
+      <button
+        v
+        onclick="copyToClipboard('Xin chào! Cảm ơn vì đã gọi món. Tôi sẽ gửi nhanh nhất có thể :)');"
+      >
+        베트남어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Halo! Terima kasih atas pesanannya. Kami akan mengirimkannya kepada Anda sesegera mungkin:)');"
+      >
+        인도네시아어
+      </button>
+    </div>
+    <div class="box">
+      <span class="D">배송</span>
+      <p>
+        ※말레이시아※
+        <br />
+        배송은 한국에서, 주문 확정 후 영업일 기준 1-2일 이내에 배송이
+        시작됩니다!
+        <br />
+        서말레이시아 - 8~12일 소요 / 동말레이시아 - 12~17일 소요
+      </p>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Hello! Thank you for your inquiry. Shipping starts in Korea, and within 1-2 business days of order confirmation! It usually takes 8 to 12 days to arrive in West Malaysia and 12 to 17 days to get to East Malaysia.');"
+      >
+        영어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('您好！谢谢您的咨询。 配送从韩国出发，确定订单后1-2个工作日内开始配送！ 到达西马来西亚通常需要8~12天,到达东马来西亚通常需要12~17天左右。');"
+      >
+        중국어(간체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('您好！謝謝您的諮詢。 配送從韓國出發，確定訂單後1-2個工作日內開始配送！ 到達西馬來西亞通常需要8~12天,到達東馬來西亞通常需要12~17天左右。');"
+      >
+        중국어(번체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Xin chào! Cảm ơn vì đã hỏi. Giao hàng sẽ xuất phát từ Hàn Quốc, sau khi xác nhận đặt hàng, giao hàng sẽ bắt đầu trong vòng 1-2 ngày kể từ ngày kinh doanh! Thường mất 8 đến 12 ngày để đến Tây Malaysia, và thường mất 12 đến 17 ngày để đến Đông Malaysia.');"
+      >
+        베트남어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Halo! Terima kasih atas pertanyaannya. Pengiriman akan berangkat dari Korea, dan pengiriman akan dimulai dalam 1-2 hari kerja setelah pesanan dikonfirmasi! Biasanya butuh waktu 8 sampai 12 hari untuk sampai ke Malaysia Barat dan biasanya 12 sampai 17 hari untuk sampai ke Malaysia Timur.');"
+      >
+        인도네시아어
+      </button>
+    </div>
+    <div class="box">
+      <span class="D">배송</span>
+      <p>
+        ※말레이시아 외 동남아 배송안내※
+        <br />
+        배송은 한국에서, 주문 확정 후 영업일 기준 1-2일 이내에 배송이
+        시작됩니다!
+        <br />
+        배송은 평균 7일에서 15일정도 걸립니다.
+      </p>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Hello! Thank you for your inquiry. Shipping starts in Korea, and within 1-2 business days of order confirmation! It takes about 7 to 12 days on average for delivery.');"
+      >
+        영어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('您好！谢谢您的咨询。 配送从韩国出发，确定订单后1-2个工作日内开始配送！ 配送平均需要7天到12天左右。');"
+      >
+        중국어(간체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('您好！謝謝您的諮詢。 配送從韓國出發，確定訂單後1-2個工作日內開始配送！ 配送平均需要7天到12天左右。');"
+      >
+        중국어(번체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Xin chào! Cảm ơn vì đã hỏi. Giao hàng sẽ xuất phát từ Hàn Quốc, sau khi xác nhận đặt hàng, giao hàng sẽ bắt đầu trong vòng 1-2 ngày kể từ ngày kinh doanh! Việc vận chuyển trung bình mất khoảng 7 đến 12 ngày.');"
+      >
+        베트남어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Halo! Terima kasih atas pertanyaannya. Pengiriman akan berangkat dari Korea, dan pengiriman akan dimulai dalam 1-2 hari kerja setelah pesanan dikonfirmasi! Pengiriman rata-rata memakan waktu 7 sampai 12 hari.');"
+      >
+        인도네시아어
+      </button>
+    </div>
+    <div class="box">
+      <span class="A">정품</span>
+      <p>맞습니다, 저희가 판매하는 제품은 모두 정품입니다.</p>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Yes, all the products we sell are genuine.');"
+      >
+        영어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('是的，我们销售的产品都是正品。');"
+      >
+        중국어(간체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('是的，我們銷售的產品都是正品。');"
+      >
+        중국어(번체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Đúng vậy, tất cả các sản phẩm chúng tôi bán là chính hãng.');"
+      >
+        베트남어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Benar sekali, semua produk yang kami jual adalah asli.');"
+      >
+        인도네시아어
+      </button>
+    </div>
+    <div class="box">
+      <span class="C">오배송</span>
+      <p>안녕하세요, 불편함을 끼쳐 드려 죄송 ~ 송장 사진 보내주세요.</p>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Hello, I’m sorry for inconvenience. I think you must have been surprised when you reiceived your parcel. To check the problem faster, could you show me the two invoices attached to the package and the product you received?');"
+      >
+        영어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('您好，很抱歉给您带来不便。我觉得收到商品的时候应该很惊讶。为了更快地确认问题，能给我看一下收到的商品和快递上的两个发票吗？');"
+      >
+        중국어(간체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('您好，很抱歉給您帶來不便。我覺得收到商品的時候應該很驚訝。爲了更快地確認問題，能給我看一下收到的商品和快遞上的兩個發票嗎？');"
+      >
+        중국어(번체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Xin chào, xin lỗi vì sự bất tiện này. Tôi nghĩ chắc hẳn bạn đã rất ngạc nhiên khi nhận được sản phẩm. Để xác định vấn đề nhanh hơn, bạn vui lòng cho tôi xem hai hóa đơn kèm theo sản phẩm và đơn hàng bạn nhận được không?');"
+      >
+        베트남어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Halo, mohon maaf atas ketidaknyamanannya. Saya pikir Anda pasti sangat terkejut ketika Anda menerima produk tersebut. Untuk mengidentifikasi masalah lebih cepat, dapatkah Anda menunjukkan kepada saya dua faktur yang dilampirkan pada produk dan kurir yang Anda terima?');"
+      >
+        인도네시아어
+      </button>
+    </div>
+    <div class="box">
+      <span class="C">오배송</span>
+      <p>확인 완료, 다음 주문에 같이 넣어드려도 될까요?</p>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Hello, the confirmation has been completed. Thank you for waiting. I’m so sorry for the inconvenience. We want to send you the missing item, but we can’t deliver it without a new order. Can I put it in the next order together?');"
+      >
+        영어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('您好，确认完毕。 谢谢您的等待。 很抱歉给您带来不便。 我们想寄送遗漏的物品，但如果我们没有新的订单，就无法配送。 可以一起下订单吗？');"
+      >
+        중국어(간체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('您好，確認完畢。 謝謝您的等待。 很抱歉給您帶來不便。 我們想寄送遺漏的物品，但如果我們沒有新的訂單，就無法配送。 可以一起下訂單嗎？');"
+      >
+        중국어(번체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Xin chào, đã xác nhận xong. Cảm ơn các bạn đã chờ đợi. Tôi thực sự xin lỗi vì đã gây bất tiện. Chúng tôi muốn gửi hàng hóa bị thiếu nhưng chúng tôi không thể giao hàng nếu không có đơn đặt hàng mới. Tôi có thể cho vào cùng với đơn đặt hàng tiếp theo được không?');"
+      >
+        베트남어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Halo, konfirmasi selesai. Terima kasih telah menunggu. Maaf atas ketidaknyamanan ini. Kami ingin mengirimkan barang yang hilang, tapi kami tidak bisa mengirimkannya jika tidak ada pesanan baru. Bolehkah saya memasukkannya ke pesanan berikutnya?');"
+      >
+        인도네시아어
+      </button>
+    </div>
+    <div class="box">
+      <span class="G">고객요청</span>
+      <p>
+        죄송합니다. 이미 최저가로 판매하고 있기 때문에 더 이상의 할인은
+        불가능합니다.
+      </p>
+      <button
+        class="copy"
+        onclick="copyToClipboard('I’m sorry, but all the products we sell have already been offered at the lowest price, so no further individual discounts are available.');"
+      >
+        영어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('对不起。我们销售的所有产品已经以最低价再加工，不能再单独打折了。');"
+      >
+        중국어(간체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('對不起。我們銷售的所有產品已經以最低價再加工，不能再單獨打折了。');"
+      >
+        중국어(번체)
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Xin lỗi. Tất cả các sản phẩm được bán bởi chúng tôi đã được bán với giá thấp nhất, vì vậy không thể giảm giá thêm cho từng cá nhân.');"
+      >
+        베트남어
+      </button>
+      <button
+        class="copy"
+        onclick="copyToClipboard('Maaf. Semua produk yang kami jual telah dijual dengan harga terendah, jadi diskon individu lebih lanjut tidak memungkinkan.');"
+      >
+        인도네시아어
+      </button>
+    </div>
 
-#wrap {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  position: relative;
-  margin-top: 15px;
-}
-.box {
-  display: inline-block;
-  width: 40%;
-  background-color: #fff;
-  border: 1px solid black;
-  /* border-radius: 20px; */
-  margin: 10px;
-  padding: 30px;
-  text-align: center;
-  box-sizing: content-box;
-}
-.short {
-  width: 28% !important;
-}
+    <div class="box">
+      <span class="H">인사말</span>
+      <span class="E">유통기한</span>
+      <span class="A">정품</span>
+      <span class="D">배송</span>
+      <span class="C">오배송</span>
+      <span class="G">고객요청</span>
+      <span class="B">마무리인사</span>
+      <p>복사용</p>
+      <button class="copy" onclick="copyToClipboard('');">영어</button>
+      <button class="copy" onclick="copyToClipboard('');">중국어(간체)</button>
+      <button class="copy" onclick="copyToClipboard('');">중국어(번체)</button>
+      <button class="copy" onclick="copyToClipboard('');">베트남어</button>
+      <button class="copy" onclick="copyToClipboard('');">인도네시아어</button>
+    </div>
 
-span {
-  padding: 7px 10px;
-  border: none;
-  border-radius: 50px;
-  font-size: 12px;
-  margin: 3px;
-}
-.f_btn {
-  border: none;
-  border-radius: 50px;
-  height: 45px;
-}
+    <script>
+      // 복사버튼
+      function copyToClipboard(val) {
+        var t = document.createElement('textarea')
+        document.body.appendChild(t)
+        t.value = val
+        t.select()
+        document.execCommand('copy')
+        document.body.removeChild(t)
+      }
+      // 복사완료
+      $(document).ready(function () {
+        $('button.copy').click(function () {
+          $('div.done').animate(
+            {
+              opacity: '1',
+            },
+            500,
+            function () {
+              $('div.done').animate(
+                {
+                  opacity: '0',
+                },
+                500,
+              )
+            },
+          )
+        })
+      })
+      // 검색
+      $(document).ready(function () {
+        $('#search').on('keyup', function () {
+          var value = $(this).val().toLowerCase()
 
-.H, button.h /* 인사말 */ {
-  background-color: #e2f0d9;
-}
-.E, button.e /* 유통기한 */ {
-  background-color: #e1ebf7;
-}
-.D, button.d /* 배송 */ {
-  background-color: #ede3ee;
-}
-.A, button.a /* 정품 */ {
-  background-color: #fcf9da;
-}
-.C, button.c /* 불만 */ {
-  background-color: #fcdfd7;
-}
-.G, button.g /* 고객요청 */ {
-  background-color: #f8e0c6;
-}
-.B, button.b /* 마무리인사 */ {
-  background-color: #eaeaea;
-}
-
-button.all:hover {
-  background-color: #c0c0c0;
-}
-button.h:hover {
-  background-color: #b5c0ae;
-}
-button.e:hover {
-  background-color: #b4bcc6;
-}
-button.a:hover {
-  background-color: #cac7ae;
-}
-button.d:hover {
-  background-color: #beb6be;
-}
-button.c:hover {
-  background-color: #cab2ac;
-}
-button.g:hover {
-  background-color: #c6b39e;
-}
-button.b:hover {
-  background-color: #bbbbbb;
-}
-
-p {
-  font-size: 20px;
-  font-weight: 900;
-}
-button {
-  width: 100px;
-  height: 50px;
-}
+          $('.box').filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          })
+        })
+      })
+    </script>
+  </body>
+</html>
