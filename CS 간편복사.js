@@ -72,3 +72,15 @@ $(document).ready(function () {
     $('#wrap .box').not('.b').css('display', 'none')
   })
 })
+
+//피자 호버 쉐이크
+$(document).ready(function(){
+	$(".en").hover(
+    function () {
+      $(".fa-pizza-slice").addClass("fa-shake");
+    },
+    function () {
+      $(".fa-pizza-slice").removeClass("fa-shake");
+    }
+  );
+});
